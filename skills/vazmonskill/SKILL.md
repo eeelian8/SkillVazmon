@@ -1,7 +1,7 @@
 ---
 name: vazmonskill
 description: "Trigger: VazmonSkill, learn software development, guided project. Teach beginners from idea to deployment without skipping understanding."
-license: UNLICENSED
+license: MIT
 metadata:
   author: eeelian8
   version: "0.1.0"

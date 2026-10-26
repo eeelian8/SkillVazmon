@@ -27,7 +27,7 @@ Download the repository from GitHub using Code → Download ZIP, or clone it:
 git clone https://github.com/eeelian8/SkillVazmon.git
 ```
 
-Copy SkillVazmon/skills/vazmonskill/ to one of the destinations below, preserving all four reference files.
+Copy SkillVazmon/skills/vazmonskill/ to one of the destinations below, preserving all four reference files and the bundled LICENSE.
 Manual copying does not require Node.js. Native loading still needs verification in the target agent.
 
 ## Agent-specific locations
@@ -36,17 +36,19 @@ Manual copying does not require Node.js. Native loading still needs verification
 |---|---|---|
 | Claude Code | ~/.claude/skills/vazmonskill/ | /vazmonskill |
 | Codex | ~/.agents/skills/vazmonskill/ | $vazmonskill |
-| Kimi Code CLI | ~/.kimi/skills/vazmonskill/ | /skill:vazmonskill |
+| Kimi Code CLI | ~/.agents/skills/vazmonskill/ | /skill:vazmonskill |
 
 Here ~ means your user home, including on Windows; use your file manager or shell's home-directory syntax.
 Copy the directory manually to avoid shell-specific installation assumptions.
-For project-only installation, use .claude/skills/vazmonskill/ for Claude Code, .agents/skills/vazmonskill/ for Codex, or .kimi/skills/vazmonskill/ for Kimi.
-Kimi discovery behavior can depend on version/configuration; use its own namespace to reduce ambiguity.
+For project-only installation, use .claude/skills/vazmonskill/ for Claude Code and .agents/skills/vazmonskill/ for Codex or Kimi.
+The shared .agents path is supported by current Kimi docs and the Skills CLI adapter. Kimi-specific home paths can vary by version.
+To target one agent with Skills CLI, add -a claude-code, -a codex or -a kimi-code-cli. The Kimi adapter is not named kimi-cli.
+If symbolic links cause platform problems, the third-party CLI documents --copy for copying instead; manual copying is also available.
 Restart the agent if the skill does not appear; check the installed version's official docs if discovery differs.
 
 ## Verify loading
 
-1. Confirm the destination contains SKILL.md and all four reference files.
+1. Confirm the destination contains SKILL.md, LICENSE and all four reference files.
 2. Start a session and explicitly invoke the skill.
 3. Ask for a beginner project; verify that it asks for learning mode rather than writing code.
 4. Run the behavioral matrix before calling that agent supported in practice.
@@ -64,9 +66,10 @@ Higher-priority host instructions and permissions always apply.
 
 Consulted during this implementation; host behavior may change:
 - [Skills CLI](https://github.com/vercel-labs/skills): GitHub source, --skill filter, -g user scope and interactive agent selection.
+- [Skills CLI agent adapters](https://github.com/vercel-labs/skills/blob/main/docs/agents.md): claude-code, codex and kimi-code-cli identifiers and destinations.
 - [Agent Skills specification](https://agentskills.io/specification): lowercase identifier matching directory, YAML metadata and local references.
 - [Claude Code skills](https://code.claude.com/docs/en/skills): personal/project locations and slash invocation.
 - [Codex skills](https://developers.openai.com/codex/skills): .agents/skills locations and explicit skill selection; cross-checked against Context7 /openai/codex.
-- [Kimi Code CLI skills](https://moonshotai.github.io/kimi-cli/en/customization/skills.html): .kimi/skills and /skill:name invocation.
+- [Kimi Code CLI skills](https://moonshotai.github.io/kimi-code/en/customization/skills): shared .agents/skills discovery and /skill:name invocation.
 - [Engram](https://github.com/Gentleman-Programming/engram): candidate persistent memory; integration/setup is separate from this skill.
 No particular Graphify implementation was established from the user's name alone; obtain its intended URL before recommending installation.
